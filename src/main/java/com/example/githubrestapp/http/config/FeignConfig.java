@@ -4,11 +4,15 @@ import com.example.githubrestapp.http.error.CustomErrorDecoder;
 import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
 import feign.jackson.JacksonDecoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FeignConfig {
+
+    @Value("${github.api.token}")
+    private String githubToken;
 
     @Bean
     public Decoder feignDecoder() {
@@ -19,5 +23,15 @@ public class FeignConfig {
     public ErrorDecoder errorDecoder() {
         return new CustomErrorDecoder();
     }
+
+    // Uncomment the following lines to use the GitHub token for authentication
+    //    @Bean
+    //    public RequestInterceptor requestInterceptor() {
+    //        return requestTemplate -> {
+    //            if (!githubToken.isEmpty()) {
+    //                requestTemplate.header("Authorization", "token " + githubToken);
+    //            }
+    //        };
+    //    }
 
 }

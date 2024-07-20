@@ -1,8 +1,10 @@
 package com.example.githubrestapp.handlers;
 
 import com.example.githubrestapp.exceptions.UserNotFoundException;
+import com.example.githubrestapp.handlers.error.dto.ErrorApiLimitExceededDto;
 import com.example.githubrestapp.handlers.error.dto.ErrorResponseFormatDto;
 import com.example.githubrestapp.handlers.error.dto.ErrorUserResponseDto;
+import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +26,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(errorUserResponseDto);
+    }
+
+    @ExceptionHandler(FeignException.Forbidden.class)
+    @ResponseBody
+    public ResponseEntity<ErrorApiLimitExceededDto> handleApiRateLimitExceededException(FeignException.Forbidden exception) {
+        log.warn(exception.getMessage());
+        ErrorApiLimitExceededDto errorApiLimitExceededDto = new ErrorApiLimitExceededDto(HttpStatus.FORBIDDEN.value(), exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(errorApiLimitExceededDto);
     }
 
     @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)

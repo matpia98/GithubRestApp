@@ -1,6 +1,7 @@
 package com.example.githubrestapp.service;
 
 import com.example.githubrestapp.controller.dto.GetRepositoriesBranches;
+import com.example.githubrestapp.exceptions.UserNotFoundException;
 import com.example.githubrestapp.http.apiresponses.Branch;
 import com.example.githubrestapp.http.apiresponses.Commit;
 import com.example.githubrestapp.http.apiresponses.Owner;
@@ -16,7 +17,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -62,6 +66,22 @@ public class RepoServiceTest {
         verify(githubClient, times(1)).fetchAllRepos(username);
         verify(githubClient, times(1)).fetchBranches("testuser", "repo1");
         verify(githubClient, times(1)).fetchBranches("testuser", "repo2");
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenUserNotFound() {
+        // given
+        String username = "notexistentuser";
+        when(githubClient.fetchAllRepos(username)).thenThrow(new UserNotFoundException("User not found"));
+
+        // when
+        Throwable throwable = catchThrowable(() -> repoService.getAllReposWithBranches(username));
+
+        // then
+        assertThat(throwable).isInstanceOf(UserNotFoundException.class)
+                .hasMessage("User not found");
+        verify(githubClient, times(1)).fetchAllRepos(username);
+        verify(githubClient, never()).fetchBranches(anyString(), anyString());
     }
 
 }

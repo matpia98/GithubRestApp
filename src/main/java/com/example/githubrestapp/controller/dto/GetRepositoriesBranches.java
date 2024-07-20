@@ -1,4 +1,4 @@
-package com.example.githubrestapp.service;
+package com.example.githubrestapp.controller.dto;
 
 import com.example.githubrestapp.http.apiresponses.Branch;
 

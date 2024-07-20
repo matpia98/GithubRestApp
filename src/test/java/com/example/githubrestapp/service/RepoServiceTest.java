@@ -1,6 +1,6 @@
 package com.example.githubrestapp.service;
 
-import com.example.githubrestapp.exceptions.UserNotFoundException;
+import com.example.githubrestapp.controller.dto.GetRepositoriesBranches;
 import com.example.githubrestapp.http.apiresponses.Branch;
 import com.example.githubrestapp.http.apiresponses.Commit;
 import com.example.githubrestapp.http.apiresponses.Owner;

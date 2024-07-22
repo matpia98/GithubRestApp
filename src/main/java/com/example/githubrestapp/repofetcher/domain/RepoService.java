@@ -1,17 +1,14 @@
-package com.example.githubrestapp.service;
+package com.example.githubrestapp.repofetcher.domain;
 
-import com.example.githubrestapp.controller.dto.GetRepositoriesBranches;
-import com.example.githubrestapp.exceptions.UserNotFoundException;
-import com.example.githubrestapp.http.apiresponses.Branch;
-import com.example.githubrestapp.http.apiresponses.Repos;
-import com.example.githubrestapp.http.client.GithubClient;
+import com.example.githubrestapp.repofetcher.infrastructure.controller.dto.GetRepositoriesBranches;
+import com.example.githubrestapp.repofetcher.infrastructure.http.Branch;
+import com.example.githubrestapp.repofetcher.infrastructure.http.Repos;
+import com.example.githubrestapp.repofetcher.infrastructure.http.GithubClient;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 @AllArgsConstructor
 public class RepoService {
 

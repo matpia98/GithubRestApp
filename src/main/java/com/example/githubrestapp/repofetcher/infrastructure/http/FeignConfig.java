@@ -1,6 +1,5 @@
-package com.example.githubrestapp.http.config;
+package com.example.githubrestapp.repofetcher.infrastructure.http;
 
-import com.example.githubrestapp.http.error.CustomErrorDecoder;
 import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
 import feign.jackson.JacksonDecoder;
@@ -9,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class FeignConfig {
+class FeignConfig {
 
     @Value("${github.api.token}")
     private String githubToken;

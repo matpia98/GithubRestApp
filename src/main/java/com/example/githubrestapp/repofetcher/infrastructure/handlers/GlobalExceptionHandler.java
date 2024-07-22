@@ -1,9 +1,9 @@
-package com.example.githubrestapp.handlers;
+package com.example.githubrestapp.repofetcher.infrastructure.handlers;
 
-import com.example.githubrestapp.exceptions.UserNotFoundException;
-import com.example.githubrestapp.handlers.error.dto.ErrorApiLimitExceededDto;
-import com.example.githubrestapp.handlers.error.dto.ErrorResponseFormatDto;
-import com.example.githubrestapp.handlers.error.dto.ErrorUserResponseDto;
+import com.example.githubrestapp.repofetcher.domain.UserNotFoundException;
+import com.example.githubrestapp.repofetcher.infrastructure.handlers.error.dto.ErrorUserResponseDto;
+import com.example.githubrestapp.repofetcher.infrastructure.handlers.error.dto.ErrorApiLimitExceededDto;
+import com.example.githubrestapp.repofetcher.infrastructure.handlers.error.dto.ErrorResponseFormatDto;
 import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 @Log4j2
-public class GlobalExceptionHandler {
+class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseBody

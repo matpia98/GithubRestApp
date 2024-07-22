@@ -1,8 +1,5 @@
-package com.example.githubrestapp.http.client;
+package com.example.githubrestapp.repofetcher.infrastructure.http;
 
-import com.example.githubrestapp.http.apiresponses.Branch;
-import com.example.githubrestapp.http.apiresponses.Repos;
-import com.example.githubrestapp.http.config.FeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

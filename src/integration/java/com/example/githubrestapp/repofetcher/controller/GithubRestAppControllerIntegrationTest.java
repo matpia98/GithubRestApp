@@ -1,11 +1,11 @@
-package com.example.githubrestapp.controller;
+package com.example.githubrestapp.repofetcher.controller;
 
-import com.example.githubrestapp.controller.dto.GetRepositoriesBranches;
-import com.example.githubrestapp.exceptions.UserNotFoundException;
-import com.example.githubrestapp.handlers.error.dto.ErrorUserResponseDto;
-import com.example.githubrestapp.http.apiresponses.Branch;
-import com.example.githubrestapp.http.apiresponses.Commit;
-import com.example.githubrestapp.service.RepoService;
+import com.example.githubrestapp.repofetcher.infrastructure.controller.dto.GetRepositoriesBranches;
+import com.example.githubrestapp.repofetcher.domain.UserNotFoundException;
+import com.example.githubrestapp.repofetcher.infrastructure.handlers.error.dto.ErrorUserResponseDto;
+import com.example.githubrestapp.repofetcher.infrastructure.http.Branch;
+import com.example.githubrestapp.repofetcher.infrastructure.http.Commit;
+import com.example.githubrestapp.repofetcher.domain.RepoService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,10 @@
-package com.example.githubrestapp.http.error;
+package com.example.githubrestapp.repofetcher.infrastructure.http;
 
-import com.example.githubrestapp.exceptions.UserNotFoundException;
+import com.example.githubrestapp.repofetcher.domain.UserNotFoundException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 
-public class CustomErrorDecoder implements ErrorDecoder {
+class CustomErrorDecoder implements ErrorDecoder {
 
     private final ErrorDecoder defaultErrorDecoder = new Default();
     @Override

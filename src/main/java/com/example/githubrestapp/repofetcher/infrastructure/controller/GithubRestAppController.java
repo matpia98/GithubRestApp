@@ -1,7 +1,7 @@
-package com.example.githubrestapp.controller;
+package com.example.githubrestapp.repofetcher.infrastructure.controller;
 
-import com.example.githubrestapp.controller.dto.GetRepositoriesBranches;
-import com.example.githubrestapp.service.RepoService;
+import com.example.githubrestapp.repofetcher.infrastructure.controller.dto.GetRepositoriesBranches;
+import com.example.githubrestapp.repofetcher.domain.RepoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class GithubRestAppController {
+class GithubRestAppController {
 
     private final RepoService service;
 

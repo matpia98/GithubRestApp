@@ -156,15 +156,13 @@ mvn test
 ```
 ### Project Structure
 
-**controller**: Contains the REST controllers
+**domain**: Contains the business logic and service classes.
 
-**service**: Contains the business logic.
+**infrastructure/controller**: Contains the REST controllers.
 
-**http**: Contains HTTP clients and related configurations.
+**infrastructure/http**: Contains HTTP clients and related configurations.
 
-**exceptions**: Contains custom exception classes.
-
-**handlers**: Contains global exception handlers.
+**infrastructure/handlers**: Contains global exception handlers.
 
 **dto**: Contains Data Transfer Objects (DTOs) for request and response.
 

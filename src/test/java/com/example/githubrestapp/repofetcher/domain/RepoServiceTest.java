@@ -1,8 +1,6 @@
 package com.example.githubrestapp.repofetcher.domain;
 
 import com.example.githubrestapp.repofetcher.infrastructure.controller.dto.GetRepositoriesBranches;
-import com.example.githubrestapp.repofetcher.infrastructure.http.GithubClient;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

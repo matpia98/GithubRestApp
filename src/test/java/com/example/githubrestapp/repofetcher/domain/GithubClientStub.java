@@ -2,14 +2,13 @@ package com.example.githubrestapp.repofetcher.domain;
 
 import com.example.githubrestapp.repofetcher.infrastructure.http.Branch;
 import com.example.githubrestapp.repofetcher.infrastructure.http.Commit;
-import com.example.githubrestapp.repofetcher.infrastructure.http.GithubClient;
 import com.example.githubrestapp.repofetcher.infrastructure.http.Owner;
 import com.example.githubrestapp.repofetcher.infrastructure.http.Repos;
 
 import java.util.Arrays;
 import java.util.List;
 
-class GithubClientStub implements GithubClient {
+class GithubClientStub implements RepoFetchable {
     private final boolean simulateUserNotFound;
 
     public GithubClientStub(boolean simulateUserNotFound) {

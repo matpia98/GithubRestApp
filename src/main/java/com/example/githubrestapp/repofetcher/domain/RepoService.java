@@ -25,9 +25,6 @@ public class RepoService {
 
     private List<Repos> getAllRepos(String username) {
         List<Repos> repos = repoFetchable.fetchAllRepos(username);
-        if (repos.isEmpty()) {
-            throw new UserNotFoundException("User not found");
-        }
         return repos.stream()
                 .filter(repo -> !repo.fork())
                 .collect(Collectors.toList());

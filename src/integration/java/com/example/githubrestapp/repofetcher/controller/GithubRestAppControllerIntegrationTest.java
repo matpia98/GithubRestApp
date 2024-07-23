@@ -124,4 +124,79 @@ public class GithubRestAppControllerIntegrationTest {
                 .body("message", equalTo("User not found"));
     }
 
+    @Test
+    public void shouldReturnForbiddenForRateLimitExceeded() {
+        // given
+        wireMockServer.stubFor(get(urlEqualTo("/users/testuser/repos"))
+                .willReturn(aResponse()
+                        .withStatus(403)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("""
+                                  {
+                                  "message": "API rate limit exceeded",
+                                  "documentation_url": "https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"
+                                  }
+                                """)));
+
+        // when, then
+        when()
+                .get("/user/testuser")
+                .then()
+                .statusCode(403)
+                .body("message", equalTo("API rate limit exceeded"));
+    }
+
+    @Test
+    public void shouldReturnEmptyListForUserWithOnlyForkedRepos() {
+        // given
+        wireMockServer.stubFor(get(urlEqualTo("/users/testuser/repos"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withStatus(200)
+                        .withBody("""
+                                [
+                                  {
+                                    "name": "forkedrepo1",
+                                    "owner": {
+                                      "login": "testuser"
+                                    },
+                                    "fork": true
+                                  },
+                                  {
+                                    "name": "forkedrepo2",
+                                    "owner": {
+                                      "login": "testuser"
+                                    },
+                                    "fork": true
+                                  }
+                                ]
+                                """)));
+
+        // when, then
+        when()
+                .get("/user/testuser")
+                .then()
+                .statusCode(200)
+                .body("$", hasSize(0));
+    }
+
+    @Test
+    public void shouldReturnEmptyListForUserWithNoRepos() {
+        // given
+        wireMockServer.stubFor(get(urlEqualTo("/users/testuser/repos"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withStatus(200)
+                        .withBody("[]")));
+
+        // when, then
+        when()
+                .get("/user/testuser")
+                .then()
+                .statusCode(200)
+                .body("$", hasSize(0));
+    }
+
+
+
 }

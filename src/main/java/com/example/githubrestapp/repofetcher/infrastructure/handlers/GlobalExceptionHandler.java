@@ -32,7 +32,9 @@ class GlobalExceptionHandler {
     @ResponseBody
     public ResponseEntity<ErrorApiLimitExceededDto> handleApiRateLimitExceededException(FeignException.Forbidden exception) {
         log.warn(exception.getMessage());
-        ErrorApiLimitExceededDto errorApiLimitExceededDto = new ErrorApiLimitExceededDto(HttpStatus.FORBIDDEN.value(), exception.getMessage());
+        ErrorApiLimitExceededDto errorApiLimitExceededDto = new ErrorApiLimitExceededDto(
+                HttpStatus.FORBIDDEN.value(),
+                "API rate limit exceeded");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
                 .body(errorApiLimitExceededDto);
